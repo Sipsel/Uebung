@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+struct Dozent
+{
+    char name[60];
+    char vorname[60];
+    char kuerzel[3+1];
+    int status;
+};
+struct Studiengruppe
+{
+    char bezeichnung[60];
+    char kuerzel[8+1];
+    struct Dozent *pMentor;
+};
+typedef struct Dozent Dozent;
+typedef struct Studiengruppe Studiengruppe;
+
+int istHonorarDozent(Studiengruppe s1);
+int main()
+{
+    Dozent d1;
+    Studiengruppe s1;
+    
+    strcpy(d1.name,"Mueller");
+    strcpy(d1.vorname,"Hans");
+    strcpy(d1.kuerzel,"HM1");
+    d1.status = 2;
+    
+    strcpy(s1.bezeichnung,"Wirtschaftsinformatik Bachelor,Start 2020");
+    strcpy(s1.kuerzel,"BFWI120");
+    s1.pMentor = &d1;
+    
+    printf("%d\n",istHonorarDozent(s1));
+    
+    Dozent d2 = {"Merkel","Peter","PM1",1};
+    Studiengruppe s2 = {"Politische Bildung Master","MFPB120",&d2};
+    printf("%d",istHonorarDozent(s2));
+    return 0;
+}
+int istHonorarDozent(Studiengruppe s1)
+{
+    if(s1.pMentor->status==2){
+        return 1;
+    }
+    return 0;
+}
