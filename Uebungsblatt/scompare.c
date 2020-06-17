@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 
-scompare(char *txt1,char *txt2,int case_senstiv);
+int scompare(char *txt1,char *txt2,int case_senstiv);
 int main()
 {
     char txt1[] = "this is a test string";
     char txt2[] = "this is a test string";
     printf("%d",scompare(txt1,txt2,0));
 }
-scompare(char *txt1,char *txt2,int case_senstiv)
+int scompare(char *txt1,char *txt2,int case_senstiv)
 {
     int i;
     int to_upper = ((int)'a')-((int)'A');
